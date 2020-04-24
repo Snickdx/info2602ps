@@ -31,7 +31,7 @@ def inde():
 @app.route('/pokemon')
 def get_all_pokemon():
     results = []
-    for poke in pokedata:
+    for poke in pokedata[0:50]:
         results.append({
             "id":poke["id"],
             "name":poke["name"],
