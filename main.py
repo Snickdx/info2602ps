@@ -24,14 +24,25 @@ global pokedata
 with open('pokedata.json') as f:
   pokedata = json.load(f)
 
+@app.route('/')
+def inde():
+    return render_template('home.html')
+
 @app.route('/pokemon')
 def get_all_pokemon():
-  return json.dumps(pokedata)
+    results = []
+    for poke in pokedata:
+        results.append({
+            "id":poke["id"],
+            "name":poke["name"],
+            "url": "https://pokedextr.herokuapp.com/pokemon/"+poke["name"]
+        })
+    return json.dumps(results)
 
-@app.route('/pokemon/:name')
+@app.route('/pokemon/<name>')
 def get_pokemon(name):
     for poke in pokedata:
-        if poke.name == name :
+        if poke['name'] == name :
             return json.dumps(poke)
     return json.dumps({ "error": name+' not found' })
 

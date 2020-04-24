@@ -5,6 +5,10 @@
 {{ super() }}
 
 {% block content %}
-    <h1>Hello! This view is partially rendered on the server using jinja</h1>
-    <h2>It must be dynamically served</h2>
+    <h1>Poke Data API</h1>
+    <ul>
+        <li><a href="https://pokedextr.herokuapp.com/pokemon">List all Pokemon</a></li>
+        <li><a href="https://pokedextr.herokuapp.com/pokemon/bulbasaur">List a Pokemon's Details</a></li>
+    </ul>
+    
 {% endblock %}
