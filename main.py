@@ -19,40 +19,21 @@ app = create_app()
 
 app.app_context().push()
 
-''' End Boilerplate Code '''
+global pokedata
 
-@app.route('/data', methods=['GET'])
-def getData():
-  token = request.args.get('token')
-  res = 'Hello token='+token if token else "Hello"
-  return res
+with open('pokedata.json') as f:
+  pokedata = json.load(f)
 
-@app.route('/data', methods=['POST'])
-def addData():
-  data = request.json
-  res = 'Hello data='+json.dumps(data) if data else "Hello"
-  return res, 201
+@app.route('/pokemon')
+def get_all_pokemon():
+  return json.dumps(pokedata)
 
-@app.route('/data/:id', methods=['DELETE'])
-def removeData(id):
-  res = 'id '+id+' Deleted!'
-  return res, 204
-
-@app.route('/data/:id', methods=['UPDATE'])
-def updateData(id):
-  data = request.json
-  res = 'id '+id
-  res += ' Hello data='+json.dumps(data) if data else "Hello"
-  return res, 201
-
-
-@app.route('/')
-def index():
-  return render_template('home.html')
-
-@app.route('/app')
-def client_app():
-  return app.send_static_file('app.html')
+@app.route('/pokemon/:name')
+def get_pokemon(name):
+    for poke in pokedata:
+        if poke.name == name :
+            return json.dumps(poke)
+    return json.dumps({ "error": name+' not found' })
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8080, debug=True)
