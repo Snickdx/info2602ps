@@ -1,9 +1,5 @@
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/snickdx/pokedextr.git) 
 
-# Before you start
-Create a heroku account by following this [link](https://signup.heroku.com/login)
-You will also need a github account.
-
 # Creating & Linking your own github repository
 Git is used to perform source control. It helps teams manage code bases and merge togher their contributions.
 Github is a free Git server for developers to host their git repositories.
@@ -53,8 +49,4 @@ Finally you can send your changes to the repository by performing a **push**.
 ```
 git push -u origin master
 ```
-
-Heroku is setup to auto deploy the application for every push to the master branch the github repo. You can view the application by opening it from your [heroku dashboard](https://dashboard.heroku.com/apps/). Click on the newly created app then click on the "Open App" button.
-
-You application should now be deployed on heroku!
 
